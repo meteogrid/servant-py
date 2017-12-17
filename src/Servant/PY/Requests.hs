@@ -46,7 +46,8 @@ generatePyRequestWith opts req = "\n" <>
         args = captures req
              ++ qparams
              ++ body
-             ++ map (toValidFunctionName
+             ++ map ( (<> "=None")
+                    . toValidFunctionName
                     . (<>) "header"
                     ) hs
         hs = retrieveHeaders req
